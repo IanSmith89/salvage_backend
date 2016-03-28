@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cors = require('cors');
 var jwt = require('express-jwt');
-var jsonWebToken = require('jsonWebToken');
+var jsonWebToken = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 var getLatLong = require('./scripts/latLong');
 
