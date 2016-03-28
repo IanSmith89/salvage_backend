@@ -122,8 +122,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 var corsOptions = {
-  origin: 'http://localhost:8080',
-  'Access-Control-Allow-Origin': true
+  'Access-Control-Allow-Origin': 'http://localhost:8080'
 };
 app.use(cors(corsOptions));
 
