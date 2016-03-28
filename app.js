@@ -122,7 +122,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 var corsOptions = {
-  origin: 'localhost:8080'
+  origin: 'http://localhost:8080'
 };
 app.use(cors(corsOptions));
 
