@@ -38,8 +38,7 @@ var config = {
 
     myLocalPostgres: {
       adapter: 'postgresql',
-      host: process.env.DATABASE_URL,
-      database: process.env.PGDB
+      url: process.env.DATABASE_URL
     }
   },
 
