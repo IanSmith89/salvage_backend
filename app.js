@@ -346,7 +346,7 @@ orm.initialize(config, function(err, models) {
   app.connections = models.connections;
 
   // Start Server
-  app.listen(3000);
+  app.listen(process.env.PORT || 3000);
 
   console.log("Up and running on 3000");
 });
