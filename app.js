@@ -17,8 +17,6 @@ var getLatLong = require('./scripts/latLong');
 // Instantiate a new instance of the ORM
 var orm = new Waterline();
 
-// Waterline Config
-
 // Require any waterline compatible adapters here
 var postgresqlAdapter = require('sails-postgresql');
 
