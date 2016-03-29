@@ -41,7 +41,7 @@ var config = {
   },
 
   defaults: {
-    migrate: 'alter'
+    migrate: process.env.MIGRATE
   }
 
 };
