@@ -79,7 +79,9 @@ var User = Waterline.Collection.extend({
     received: {
       collection: 'donations',
       via: 'recipient'
-    }
+    },
+    donation_type: 'string',
+    notes: 'text'
   },
 
   autoCreatedAt: true,
