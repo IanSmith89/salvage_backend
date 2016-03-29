@@ -182,7 +182,7 @@ app.get('/users/:id', function(req, res) {
       res.json(users);
     });
   } else {
-    app.models.users.findOne({id: req.params.id}).populate('donations').exec(function(err, model) {
+    app.models.users.findOne({id: Number(req.params.id)}).populate('donations').exec(function(err, model) {
       if (err) {
         return res.status(500).json({err: err});
       }
@@ -222,7 +222,7 @@ app.put('/users/:id', jwt({secret: process.env.JWTSECRET}), function(req, res) {
   }
 
   function updateUser(user) {
-    app.models.users.update({id: req.params.id}, user, function(err, model) {
+    app.models.users.update({id: Number(req.params.id)}, user, function(err, model) {
       if (err) {
         return res.status(500).json({err: err});
       }
@@ -262,7 +262,7 @@ app.post('/donations', jwt({secret: process.env.JWTSECRET}), function(req, res) 
 
 // GET '/donations/:id' finds one donation
 app.get('/donations/:id', function(req, res) {
-  app.models.donations.findOne({id: req.params.id}, function(err, model) {
+  app.models.donations.findOne({id: Number(req.params.id)}, function(err, model) {
     if (err) {
       return res.status(500).json({err: err});
     }
@@ -272,12 +272,12 @@ app.get('/donations/:id', function(req, res) {
 
 // DELETE '/donations/:id' deletes donation
 app.delete('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req, res) {
-  app.models.donations.findOne({id: req.params.id}, function(err, model) {
+  app.models.donations.findOne({id: Number(req.params.id)}, function(err, model) {
     if (err) {
       return res.status(500).json({err: err});
     }
     if (model.donor === req.user.id || req.user.role === 'admin') {
-      app.models.donations.destroy({id: req.params.id}, function(err) {
+      app.models.donations.destroy({id: Number(req.params.id)}, function(err) {
         if (err) {
           return res.status(500).json({err: err});
         }
@@ -295,7 +295,7 @@ app.put('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req, re
     var donation = req.body;
     // Don't pass ID to update
     delete donation.id;
-    app.models.donations.update({id: req.params.id}, donation, function(err, model) {
+    app.models.donations.update({id: Number(req.params.id)}, donation, function(err, model) {
       if (err) {
         return res.status(500).json({err: err});
       }
