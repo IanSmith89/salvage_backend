@@ -124,7 +124,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 var corsOptions = {
-  origin: 'process.env.FRONTEND'
+  origin: process.env.FRONTEND
 };
 app.use(cors(corsOptions));
 
@@ -142,7 +142,7 @@ app.get('/users', function(req, res) {
 
 // POST '/users' creates new user
 app.post('/users', function(req, res) {
-  
+
   var user = req.body;
   app.models.users.findOne({email: user.email}, function(err, model) {
     if (err) {
