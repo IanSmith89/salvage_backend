@@ -131,7 +131,7 @@ app.use(cors(corsOptions));
 
 // GET '/users' shows admin page of all users
 app.get('/users', function(req, res) {
-  app.models.users.find().exec(function(err, users) {
+  app.models.users.find().populate('received').exec(function(err, users) {
     if (err) {
       return res.status(500).json({err: err});
     }
