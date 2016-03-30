@@ -131,7 +131,7 @@ app.use(cors(corsOptions));
 
 // GET '/users' shows admin page of all users
 app.get('/users', function(req, res) {
-  app.models.users.find().populate('received').exec(function(err, users) {
+  app.models.users.find().exec(function(err, users) {
     if (err) {
       return res.status(500).json({err: err});
     }
@@ -305,6 +305,16 @@ app.put('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req, re
   } else {
     return res.status(401).json({err: 'unauthorized'});
   }
+});
+
+// GET '/donations' shows all donations
+app.get('/claims/:id', function(req, res) {
+  app.models.donations.find({donor: Number(req.params.id)}).exec(function(err, donations) {
+    if (err) {
+      return res.status(500).json({err: err});
+    }
+    res.json(donations);
+  });
 });
 
 // POST '/login' authenticates user and sends JWT
