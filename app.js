@@ -313,6 +313,7 @@ app.get('/claims/:id', function(req, res) {
     if (err) {
       return res.status(500).json({err: err});
     }
+    console.log(donations);
     res.json(donations);
   });
 });
