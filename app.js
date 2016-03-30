@@ -277,7 +277,7 @@ app.delete('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req,
     if (err) {
       return res.status(500).json({err: err});
     }
-    if (model.donor === req.user.id || req.user.role === 'admin') {
+    if (model.donor === req.user.id || model.recipient === req.user.id || req.user.role === 'admin') {
       app.models.donations.destroy({id: Number(req.params.id)}, function(err) {
         if (err) {
           return res.status(500).json({err: err});
