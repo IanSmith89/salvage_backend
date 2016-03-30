@@ -309,11 +309,10 @@ app.put('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req, re
 
 // GET '/donations' shows all donations
 app.get('/claims/:id', function(req, res) {
-  app.models.donations.find({donor: Number(req.params.id)}).exec(function(err, donations) {
+  app.models.donations.find({recipient: Number(req.params.id)}).exec(function(err, donations) {
     if (err) {
       return res.status(500).json({err: err});
     }
-    console.log(donations);
     res.json(donations);
   });
 });
