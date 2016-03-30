@@ -292,19 +292,15 @@ app.delete('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req,
 
 // PUT '/donations/:id' edits/updates one donation
 app.put('/donations/:id', jwt({secret: process.env.JWTSECRET}), function(req, res) {
-  if (req.user.role === 'admin') {
-    var donation = req.body;
-    // Don't pass ID to update
-    delete donation.id;
-    app.models.donations.update({id: Number(req.params.id)}, donation, function(err, model) {
-      if (err) {
-        return res.status(500).json({err: err});
-      }
-      res.json(model);
-    });
-  } else {
-    return res.status(401).json({err: 'unauthorized'});
-  }
+  var donation = req.body;
+  // Don't pass ID to update
+  delete donation.id;
+  app.models.donations.update({id: Number(req.params.id)}, donation, function(err, model) {
+    if (err) {
+      return res.status(500).json({err: err});
+    }
+    res.json(model);
+  });
 });
 
 // GET '/donations' shows all donations
